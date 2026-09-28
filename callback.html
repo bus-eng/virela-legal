@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Autorización - Virela</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<header>
+  <a class="brand" href="index.html">Virela<span>.</span></a>
+  <nav>
+    <a href="privacidad.html">Política de privacidad / Privacy Policy</a>
+    <a href="terminos.html">Términos del servicio / Terms of Service</a>
+  </nav>
+</header>
+<h1>Autorización recibida / Authorization received</h1>
+<p id="msg" class="muted">Procesando</p>
+<p>Código / Code: <code id="code"></code></p>
+<p>State: <code id="state"></code></p>
+<p class="muted">Este código es de un solo uso y vence en minutos. / This code is single-use and expires in minutes.</p>
+<script>
+  var p = new URLSearchParams(location.search);
+  var err = p.get('error');
+  document.getElementById('code').textContent = p.get('code') || '-';
+  document.getElementById('state').textContent = p.get('state') || '-';
+  document.getElementById('msg').textContent = err
+    ? 'Error: ' + err + ' ' + (p.get('error_description') || '')
+    : 'Copiá el código y pasáselo a la herramienta de publicación.';
+</script>
+</main>
+</body>
+</html>
